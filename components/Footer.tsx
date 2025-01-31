@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { footerLinks } from "@/constants";
 
 function Footer() {
   return (
@@ -18,8 +19,23 @@ function Footer() {
           </p>
         </div>
 
-        <div className="footer__links">
-          <h4 className="font-bold">Links</h4>
+        <div className="footer__links grid grid-cols-1 md:grid-cols-3 gap-6 py-10">
+          {footerLinks.map((link) => (
+            <div className="footer__link" key={link.title}>
+              <h3 className="font-semibold text-lg mb-4">{link.title}</h3>
+              <div className="space-y-3">
+                {link.links.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.link}
+                    className="block text-gray-400 hover:text-white transition duration-300 ease-in-out"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </footer>
