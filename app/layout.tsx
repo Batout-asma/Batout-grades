@@ -15,9 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="relative{`${geistSans.variable} ${geistMono.variable} antialiased`}">
+      <body className="flex flex-col {`${geistSans.variable} ${geistMono.variable} antialiased`}">
         <Navbar />
-        {children}
+        <main className="flex-grow">{children}</main>
         <Footer />
       </body>
     </html>
