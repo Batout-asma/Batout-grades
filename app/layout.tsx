@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
+import Footer from "@/app/components/Footer";
+import Navbar from "@/app/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Batout Grades",
@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col {`${geistSans.variable} ${geistMono.variable} antialiased`}">
+      <body className="flex flex-col antialiased">
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

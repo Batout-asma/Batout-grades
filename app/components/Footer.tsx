@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { footerLinks } from "@/constants";
+import { footerLinks } from "@/app/constants";
 
 function Footer() {
   return (

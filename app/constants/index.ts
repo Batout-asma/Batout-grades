@@ -3,7 +3,7 @@ export const footerLinks = [
     title: "About",
     links: [
       {
-        name: "Report Bug",
+        name: "Report a Bug",
         link: "https://github.com/Batout-asma/batout-grades/issues",
       },
       {
@@ -16,7 +16,7 @@ export const footerLinks = [
     title: "Contact",
     links: [
       { name: "GitHub", link: "https://github.com/Batout-asma" },
-      { name: "Instagram", link: "https://www.instagram.com/batout_asma" },
+      { name: "Telegram", link: "https://t.me/Batoutiva_o" },
       {
         name: "Batoutivaatbake@gmail.com",
         link: "mailto:Batoutivaatbake@gmail.com",

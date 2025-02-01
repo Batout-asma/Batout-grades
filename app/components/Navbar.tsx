@@ -2,16 +2,38 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import CustomButton from "./CustomButton";
 
 function Navbar() {
+  const [activeButton, setActiveButton] = useState<string>("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
+  useEffect(() => {
+    if (pathname === "/manual") {
+      setActiveButton("Manual");
+    } else if (pathname === "/template") {
+      setActiveButton("Template");
+    } else if (pathname === "/yearly") {
+      setActiveButton("Yearly");
+    } else {
+      setActiveButton("");
+    }
+  }, [pathname]);
+
+  const handleButtonClick = (buttonName: string) => {
+    setActiveButton(buttonName);
+    router.push(`/${buttonName.toLowerCase()}`);
+  };
+
   return (
-    <header className="w-full absolute z-10">
+    <header className="w-full mb-5 border-b border-gray-100">
       <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4">
         <Link href="/" className="flex justify-center items-center">
           <Image
@@ -26,17 +48,25 @@ function Navbar() {
 
         <div className="hidden sm:flex gap-5">
           <CustomButton
-            title="Yearly"
-            btnType="button"
+            title="Manual"
             containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2"
-          />
-          <CustomButton
-            title="Manuel"
-            containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2"
+            handleClick={() => handleButtonClick("Manual")}
+            btnType={"button"}
+            isActive={activeButton === "Manual"}
           />
           <CustomButton
             title="Template"
             containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2"
+            handleClick={() => handleButtonClick("Template")}
+            btnType={"button"}
+            isActive={activeButton === "Template"}
+          />
+          <CustomButton
+            title="Yearly"
+            btnType="button"
+            containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2"
+            handleClick={() => handleButtonClick("Yearly")}
+            isActive={activeButton === "Yearly"}
           />
         </div>
 
@@ -62,16 +92,25 @@ function Navbar() {
       {menuOpen && (
         <div className="sm:hidden flex flex-col items-center text-white py-4">
           <CustomButton
-            title="Yearly"
+            title="Manual"
+            btnType="button"
             containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2 mb-2"
-          />
-          <CustomButton
-            title="Manuel"
-            containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2 mb-2"
+            handleClick={() => handleButtonClick("Manual")}
+            isActive={activeButton === "Manual"}
           />
           <CustomButton
             title="Template"
             containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2 mb-2"
+            handleClick={() => handleButtonClick("Template")}
+            btnType={"button"}
+            isActive={activeButton === "Template"}
+          />
+          <CustomButton
+            title="Yearly"
+            containerStyles="text-white bg-[#7c7c7c] rounded min-w-[130px] hover:bg-[#79B552] py-2 mb-2"
+            handleClick={() => handleButtonClick("Yearly")}
+            btnType={"button"}
+            isActive={activeButton === "Yearly"}
           />
         </div>
       )}
